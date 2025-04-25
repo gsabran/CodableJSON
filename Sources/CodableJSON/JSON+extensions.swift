@@ -53,12 +53,12 @@ extension JSON.Value {
       let container = try decoder.singleValueContainer()
       if container.decodeNil() {
         self = .null
-      } else if let value = try? container.decode(String.self) {
-        self = .string(value)
       } else if let value = try? container.decode(Bool.self) {
         self = .bool(value)
       } else if let value = try? container.decode(Double.self) {
         self = .number(value)
+      } else if let value = try? container.decode(String.self) {
+        self = .string(value)
       } else {
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid JSON")
       }
